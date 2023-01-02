@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="This web page explains some of the basic mathematics behind Machine Learning and Neural Networks.">
+    <meta name="author" content="Sandeep Jain">
+		<meta name="copyright" content="Copyright 2022 by Sandeep Jain">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="expires" content="4500">
+
+    <title>Simpler Machine Learning - Math</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="range_slider.css">
+  </head>
+
+  <body>
+	  	<br>
+	  	<h1>Some Mathematics</h1>
+	      	<br>
+	    <div class="flex-container">    	
+    		<div class="flex-left">
+          <p><a href="index.html">Simpler Machine Learning</a></p>
+          <p>Some Mathematics</p>
+          <p><a href="intro.html">Introducing Neural Networks</a></p>
+          <p><a href="xor.html">XOR: A Simple Neural Network in Detail</a></p>
+          <p><a href="rnn.html">Recurrent Neural Networks</a></p>
+          <p><a href="interactions/index.html">Interactions: The Future of Scientific Communication</a></p>
+          <p><a href="http://www.sandeepjain.net">About me</a></p>
+    		</div>
+	      <div class="flex-right">
+	       <div class="sub_block">
+					<h2 class="top_para" id="Functions">Transforming Values to get Other Values (Functions)</h2>
+					
+						<p>There exist mathematical entities which transform values to give other values. We say that the transformed value is dependent 
+						on or has a dependency on the value being transformed. In mathematical language, we say that the dependent or transformed value 
+					  is a function of the original value, and express it in mathematical notation as follows:</p>
+
+						<p>y = f(x)</p>
+
+						<p>x is the original value and y is the transformed or dependent value. For example, we can have a function f defined as y = &frac12; 
+						times x or y = (&frac12;)x. So if x = 2, y will be 1, and if x = 6, y will be 3. We can have a function y = x<sup>2</sup>, which is x times x.
+						So if x = 1, y will be 1 times 1 which is 1, if x = 2, y will be 2 times 2 which is 4, and if x = -1, y will be -1 times -1 which 
+					  is 1.</p> 
+
+						<p>You saw a function in the <a href="intro.html#Weights_and_Neurons">Weights and Neurons</a> section of the Introducing Neural Networks 
+						page defined as 1 / (1 + e<sup>-x</sup>). This is based on the strange letter e, which stands for a special number. You can see 
+						a description of this special number in the next section on <a href="#Irrational_Numbers">Irrational Numbers</a>. You can use the 
+						scientific calculator on your computer to calculate e raised to the power of a value. For example, 
+						if x = 0, e<sup>-0</sup> = e<sup>0</sup> = 1, and 1 / (1 + e<sup>0</sup>) = 1 / (1 + 1) = 1/2. If x = 1, e<sup>-1</sup> = 0.368, 
+						and 1/( 1 + e<sup>-1</sup>) = 1 / (1 + 0.368) = 1 / 1.368 = 0.731. If x = -1, e<sup>- (-1)</sup> = e <sup>1</sup> = 2.718 and 
+						1 / (1 + 2.718) = 1/3.718 = 0.269 (these values are rounded to the nearest third decimal place).</p>
+
+						<p>We can visualize functions by plotting the x value on a horizontal axis which we call the x-axis, and by plotting the y value 
+						on a corresponding dependent vertical axis which we call the y-axis. The x values vary continuously across the x-axis, and the y-values 
+					  vary correspondingly across the y-axis. You can play with the functions y = (&frac12;)x, y = x<sup>2</sup>, and y = 1 / (1 + e<sup>-x</sup>) in 
+					  the Interaction below. Just press a function button to see the corresponding function. Press the "line" button to play with y = (&frac12;)x,
+					  the "squared" button to play with y = x<sup>2</sup>, and the "sigmoid" button to play with y = 1 / (1 + e<sup>-x</sup>) (this last
+					  function is called the "sigmoid" function). The sigmoid is selected by default. The horizontal line at y = 1 on the sigmoid shows the 
+					  limiting value of the function as x becomes large. Slide the slider left and right to see how the y values change with the x values.</p>
+					</div>
+				</div>
+			</div>
+						<div style="text-align: center;">
+							<h4 id="Interaction_Functions">Interaction: Functions</h4>
+							<div class = "range_sliders">
+								<input type="range" min="-100" max="100" value="0" class="slider" id="myRange">
+							</div>
+							<div id="function_buttons">
+								<input id='lineButton' type='button' value='line'/>&nbsp;&nbsp;&nbsp;
+								<input id='squaredButton' type='button' value='squared'/>&nbsp;&nbsp;&nbsp;
+								<input id='sigmoidButton' type='button' value='sigmoid'/>
+							</div>
+							<canvas id='graph_function_canvas' width = '800' height='500'>
+						      Your web browser does not support the Canvas element that is needed to display this Interaction. Please upgrade to a
+						      newer browser. 
+						  </canvas>
+						  <script src='./js/math/graph_classes.js'></script>
+						  <script src='./js/math/graph_runner.js'></script>
+						 </div>
+				<div class="flex-container">
+					<div class="flex-left">
+					</div>
+					<div class="flex-right"> 
+					<div class="sub_block">
+						<h2 id="Irrational_Numbers">The Mystery of Unending Decimals (Irrational Numbers)</h2>
+
+						<p>In mathematics, there exist a category of mysterious numbers which cannot be expressed as decimal numbers which end at a 
+						certain point. In fact, they go on forever and do not even have a repeating pattern of digits. A number, which when multiplied 
+						by itself, gives the number 2, is one such number. It is called the “square root” of 2, and written as &#8730;2. We try writing 
+						down the square root of 2 below:</p>
+
+						<p>
+						1.41 &times; 1.41 = 1.9881<br>
+						1.4142 &times; 1.4142 = 1.99996164<br> 
+						1.414213 &times; 1.414213 = 1.999998409369<br>
+						1.41421356 &times; 1.41421356 = 1.9999999932878736<br>
+						1.4142135623 &times; 1.4142135623 = 1.99999999979325598129
+					  </p>
+
+						<p>In fact, you can keep adding digits to approximate the square root of 2, and multiplying by itself, and you will keep getting 
+						closer to 2, but never exactly 2. You can put a number on every atom in our galaxy, as an approximation to the square root of 2, 
+						and multiply by itself, and you still will not get exactly 2. Such numbers, like the square root of 2, are called “irrational 
+						numbers”.</p>
+
+						<p>The number denoted by the letter e, which you encounter frequently in the mathematics of neural networks, is another such 
+						irrational number. The approximate value of e is: 2.718281828459045.</p>
+
+						<p>A special property of the number e, and e alone, is that e raised to the power of a very small number is, to a very close 
+						approximation, 1 plus that number. That is,</p>
+
+						<p>e<sup>n</sup> &asymp; 1 + n for very small n, to a very close approximation. So:</p>
+
+						<p>
+						e<sup>0.01</sup> &nbsp;approximates 1.01<br>
+						e<sup>0.002</sup> &nbsp;approximates 1.002<br>
+						e<sup>0.00048</sup> &nbsp;approximates 1.00048<br>
+						e<sup>0.0000759</sup> &nbsp;approximates 1.0000759
+						</p>
+						<p>You can try this out on your scientific calculator.</p>
+						<br><br>
+						<hr>
+						<p>Copyright © 2022 by Sandeep Jain. All rights reserved.</p>
+				  </div>
+				</div>
+			</div>
+  </body>
+</html>

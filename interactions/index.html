@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="The purpose of this website is to explain Machine Learning and Neural Networks in a simpler way to 
+    people who are new to the subject.">
+    <meta name="author" content="Sandeep Jain">
+		<meta name="copyright" content="Copyright 2022 by Sandeep Jain">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="expires" content="4500">
+
+    <title>Simpler Machine Learning - Interactions</title>
+    <link rel="stylesheet" href="../style.css">
+
+    <script type="text/javascript">
+      window.MathJax = {
+        config: ["MMLorHTML.js"],
+        jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+        extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js"],
+        TeX: {
+          extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js", "action.js"]
+        },
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  </head>
+
+  <body>
+  	<br>
+  	<h1>Interactions: The Future of Scientific Communication</h1>
+      	<br>
+  <div class="flex-container">   
+    <div class="flex-left">
+          <p><a href="../index.html">Simpler Machine Learning</a></p>
+          <p><a href="../math.html">Some Mathematics</a></p>
+          <p><a href="../intro.html">Introducing Neural Networks</a></p>
+          <p><a href="../xor.html">XOR: A Simple Neural Network in Detail</a></p>
+          <p><a href="../rnn.html">Recurrent Neural Networks</a></p>
+          <p>Interactions: The Future of Scientific Communication</p>
+          <p><a href="http://www.sandeepjain.net">About me</a></p>
+    </div>
+    <div class="flex-right">
+      <div class="sub_block">
+
+    <p>For all of human history, mathematical and scientific communication has been carried out using static text and 
+    diagrams. Sometime during this century, there will be a complete shift towards dynamic, interactive media. That is, 
+    mathematical and scientific communication will be carried out primarily using text and diagrams dancing on the 
+    computer screen, interacting all the time with the user. I call these dynamic interactive media “Interactions”. 
+    One current way to enable them is using the HTML5 “canvas” element with JavaScript on the web page.</p>
+
+  	<p>Some of the most initial, primitive, halting steps in this direction are on display on some of today’s websites, 
+  	and indeed, on this one.  Much of science and engineering is enabled using differential equations, and in the future, 
+  	along with the differential equations, there will be visual interactions with the differential equations, 
+  	tailored to the application at hand. Likewise for all other types of related mathematics.</p>
+
+    <p>The result will be nothing less than the democratization of science. Advanced researchers will be able to 
+    communicate their ideas to any person with basic scientific literacy, rather than just their immediate peers. As 
+  	an outcome of this, there will be a lot more cross-fertilization between different fields of science. The key 
+  	to realizing this vision in its entirety is to come up with a set of general purpose APIs that can be used across 
+  	a variety of applications. Along with these APIs, there should be a set of “design patterns” that guide the writers 
+  	in creating the Interactions.</p>
+
+    <p>You may argue, perhaps with some justification, that what I call an Interaction is nothing but a simulation. 
+    That may well be true in some cases. But in general, the difference between Interactions and simulations is that 
+    while the purpose of simulations is to display a visual solution to an equation, the purpose of Interactions is 
+    to communicate the content of an equation in a broader way. The difference between Interactions and Mathematica is 
+    that while Mathematica is a system for computation, Interactions are a system for communication which can include 
+    computation.</p>
+
+		<p>The Interactions presented on this website in the context of the machine learning pages have a light grey
+		background. They are intended to be intuitive to use. For most of the Interactions, you just have to hover over the
+		circles or connecting lines (neurons or weights), with your mouse, or press the appropriate buttons. A brief
+		description of how to engage with each Interaction is given in the paragraph preceding it. I’ll mention that I still
+		use ordinary static diagrams at places – they have a plain white background.</p>
+
+		<p>The machine learning Interactions presented on this website are as follows:</p>
+
+		<p><a href="../math.html#Interaction_Functions">Math: Functions</a><br>
+		<a href="../intro.html#Interaction_Basics">Introducing Neural Networks: Basics</a><br>
+		<a href="../xor.html#Interaction_Weights">XOR: Playing with the Weights</a><br>
+		<a href="../xor.html#Interaction_Training">XOR: Playing with Training</a><br>
+		<a href="../xor.html#Interaction_Backpropagation">XOR: Backpropagation in Detail</a></p>
+
+		<p>All of these Interactions make use of the HTML5 "canvas" element and are coded in JavaScript.
+    The <a href="https://github.com/myinteractions/sml/">code for the above Interactions</a> is hosted at 
+    GitHub.</p>
+
+    <p>An excellent and very simple example of how equations can be made interactive is at the 
+    <a href="https://www.maxwells-equations.com/">Maxwell’s Equations</a> website. The author achieves the ingenious 
+    effect of making every term in each equation, including the equals signs, a clickable hyperlink which leads to a 
+    page that describes that term. It is a great site for understanding Maxwell’s equations, which encompass all of 
+    electricity and magnetism.</p>
+
+    <h2 id="self_describing_equations">Self Describing Equations in General</h2>
+
+    <p>While the Interaction in the above website is specific to Maxwell's equations, the Interactions demonstrated
+    in the physics equations below are perfectly general and can be applied to any mathematical expression or
+    equation whatsoever. They use <a href="https://www.mathjax.org">MathJax</a>, the gold standard for mathematical
+    publishing on the Internet, which is written in JavaScript. If you hover over each term in the equations below,
+    you will see a popup briefly describing that term.</p>
+
+    <h3>Newton's Second Law of Motion</h3>
+    <p>
+    \begin{align}
+      \texttip{F}{Force} = \texttip{m}{Mass} \texttip{a}{Acceleration}
+    \end{align}
+    </p>
+
+   <h3>Maxwell's Equations of Electricity and Magnetism</h3>
+
+    <p>
+    \begin{align}
+      \texttip{\nabla \times}{Curl, the circulation around a loop} \texttip{\vec{\mathbf{B}}}{Magnetic field} -\, \texttip{\frac1c}{One divided by the speed of light}\, \texttip{\frac{\partial\vec{\mathbf{E}}}{\partial t}}{Partial derivative of electric field <br>with respect to time} &amp; = \texttip{\frac{4\pi}{c}}{4 times pi divided by<br>the speed of light}\texttip{\vec{\mathbf{j}}}{The electric current} \\
+
+      \texttip{\nabla \cdot}{Divergence, the flux through<br> a closed surface} \texttip{\vec{\mathbf{E}}}{Electric field} &amp; = \texttip{4 \pi}{4 times pi} \texttip{\rho}{The charge inside the surface} \\
+
+      \texttip{\nabla \times}{Curl, the circulation around a loop} \texttip{\vec{\mathbf{E}}}{Electric field}\, +\, \texttip{\frac1c}{One divided by the speed of light}\, \texttip{\frac{\partial\vec{\mathbf{B}}}{\partial t}}{Partial derivative of magnetic field <br>with respect to time} &amp; = \texttip{\vec{\mathbf{0}}}{The zero vector} \\
+
+      \texttip{\nabla \cdot}{Divergence, the flux through<br> a closed surface} \texttip{\vec{\mathbf{B}}}{Magnetic field} &amp; = \texttip{0}{Zero (scalar)}
+    \end{align}
+    </p>
+
+    <h3>Schrodinger's Equation of Quantum Mechanics</h3>
+    <p>
+     \begin{align}
+     \texttip{i}{The imaginary unit which is<br>the square root of -1} \texttip{\hbar}{The Planck's constant} \texttip{\frac{\partial}{\partial t}\Psi(\mathbf{r},t)}{The partial derivative of the wave function<br>(which is a function of position and time)<br>with respect to time} = \texttip{\hat H}{The Hamiltonian operator} \texttip{\Psi(\mathbf{r},t)}{The Hamiltonian operator is applied<br> to the wave function}
+     \end{align}
+    </p>
+
+    <p>
+    I will point out that this is already a remarkable result. If everyone publishing mathematical content everywhere used this
+    system, their mathematics would be far more accessible to readers who don't understand the symbols off-hand. You cannot get
+    such a result on paper or pdf files; only on web pages. This is why I say, in my first paragraph above, that in the future
+    all mathematical and scientific communication will be via text and diagrams dancing on the computer screen. The popups in the equations above are brief; they can be far more elaborate.
+    <br><br>
+    <hr>
+    <p>Copyright © 2022 by Sandeep Jain. All rights reserved.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

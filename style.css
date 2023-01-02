@@ -1,0 +1,184 @@
+/* || General setup */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+  background-color: white;
+}
+
+body {
+}
+
+#canvas {
+  background: #fbfbfb;
+}
+
+.canvas_class {
+  background: #fbfbfb;
+}
+
+#graph_function_canvas {
+  background: #fcfcfc;
+  margin:  auto;
+}
+
+#controls {
+  position: relative;
+  left: -410px;
+  top: 450px;
+}
+
+#controls_a {
+  position: relative;
+  left: -340px;
+  top: 465px;
+}
+
+#controls_b {
+  position: relative;
+  left: -280px;
+  top: 515px;
+}
+
+#controls_c {
+  position: relative;
+  left: -410px;
+  top: 515px;
+}
+
+#itemSelect_c {
+  position: relative;
+  left: -285px;
+  top: 80px;
+}
+
+.canvasTextStyling {
+  font-size: 1.5rem;
+  font-family: 'Helvetica';
+  color: dimgray;
+}
+
+#randomizeButton {
+  font-size: 16px;
+}
+
+.anyButton {
+  font-size: 16px;
+}
+
+.smallButton {
+  font-size: 15px;
+}
+
+#function_buttons {
+  position: relative;
+  left: -250px;
+  top: 480px;
+}
+
+#lineButton {
+  font-size: 16px;
+}
+
+#squaredButton {
+  font-size: 16px;
+}
+
+#sigmoidButton {
+  font-size: 16px;
+}
+
+/* || typography */
+
+h1, h2, h3, h4 {
+  font-family: 'Arial';
+  color: #2a2a2a;
+}
+
+p, input, li {
+  font-family: 'Georgia', serif;
+  color: #2a2a2a;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  color: black;
+}
+
+h2 {
+  font-size: 2.0rem;
+  text-align: left;
+  padding-top: 1.2em;
+}
+
+h2.top_para {
+  padding-top: 0px;
+}
+
+h3 {
+  font-size: 1.7rem;
+  text-align: left;
+  padding-top: 1.1em;
+}
+
+h4 {
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+p {
+  font-size: 1.7rem;
+  line-height: 1.5;
+}
+
+table {
+  font-size: 1.7rem;
+  line-height: 1.5;
+  border-collapse: collapse;
+}
+
+.center_table {
+  margin: auto;
+}
+
+tr {
+  text-align: center;
+}
+
+th {
+  padding:  15px;
+  border:  1px solid;
+}
+
+td {
+  border:  1px solid;
+}
+
+/* layout */
+
+div.sub_block {
+  width: 64%;
+  margin:  auto;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-left {
+    width: 17%;
+    padding-left: 30px
+}
+
+.flex-right {
+    width: 83%;
+}
+
+
+

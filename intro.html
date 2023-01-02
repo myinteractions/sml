@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="This page introduces the basics of neural networks">
+    <meta name="author" content="Sandeep Jain">
+		<meta name="copyright" content="Copyright 2022 by Sandeep Jain">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="expires" content="4500">
+
+    <title>Simpler Machine Learning - Introducing Neural Networks</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+  	<br>
+  	<h1>Introducing Neural Networks</h1>
+      	<br>
+  <div class="flex-container">    	
+    <div class="flex-left">
+      <p><a href="index.html">Simpler Machine Learning</a></p>
+      <p><a href="math.html">Some Mathematics</a></p>
+      <p>Introducing Neural Networks</p>
+      <p><a href="xor.html">XOR: A Simple Neural Network in Detail</a></p>
+      <p><a href="rnn.html">Recurrent Neural Networks</a></p>
+      <p><a href="interactions/index.html">Interactions: The Future of Scientific Communication</a></p>
+      <p><a href="http://www.sandeepjain.net">About me</a></p>
+    </div>
+    <div class="flex-right">
+      <div class="sub_block">
+
+    <p>Neural networks are mathematical and computational structures that learn how to recognize a set of example patterns 
+    and also how to generalize from them to similar examples that have not been seen before. They are called neural networks 
+  	because they are loosely modeled on how biological neurons are networked together in the human brain. The thing to emphasize 
+  	is that the modeling is very loose and informal. For example, the inspiration for airplanes came from birds, but airplanes 
+  	don't flap their wings to fly. Correspondingly, while airplanes have some properties (speed and carrying capacity) that 
+  	are superior to those of birds, they have others (flexibility, manoeuvreability, take-off and landing space) that aren't 
+  	nearly as good. To explain the learning and generalization of neural networks, we need to introduce some concepts, as 
+  	given below.</p>
+
+		<h2>Values and Flow</h2>
+		<p>Everything in a neural network is either a value or an element that transforms a value in some way. A value is just a 
+		decimal number. Values flow <em>forward</em> in a neural network from back to front or <em>backwards</em> from front to back. 
+		When we draw a neural network on a page, the back side of the neural network is either on the left hand side or the bottom
+		side, and the front side is correspondingly the right hand side or the top side.</p>
+
+		<h2>Inputs and Outputs</h2>
+		<p>The name given to values as they enter the neural network from the outside world to flow forwards through the network is 
+		called "Inputs". The name given to values as they exit from the front side is called "Outputs".</p>
+
+		<h2 id="Weights_and_Neurons">Weights and Neurons</h2>
+		
+		<p>We introduce a notion of weights and neurons. Weights are just decimal numbers which are represented as lines. 
+		A given weight connects two neurons together. There is an incoming neuron from which a value flows into the weight, and 
+		an outgoing neuron into which the value flows out of the weight. The value flowing into the weight is multiplied by 
+		the weight value to give the value flowing out of the weight. Multiple weights generally connect into a given neuron. 
+		This neuron is the outgoing neuron, and the weights connect into it from the incoming neurons. A neuron is usually 
+		represented as a circle, and performs a somewhat complicated transformation on the values flowing into it. First, it 
+		adds the values flowing into it from the weights connecting into it. Let’s call this addition the “sum”. Then it applies 
+		a <a href="math.html#Functions">"Function"</a> to the sum. This function is called the “activation function”. 
+		There is a large number of possible activation functions. The function we will consider for now is called the 
+		“sigmoid” activation function, and it is written as 1/(1 + e<sup>-sum</sup>).  This is the value that flows out of the 
+		neuron. The letter "e" is explained in our section on <a href="math.html#Irrational_Numbers">Irrational Numbers</a>. 
+		There is a “forward pass” and a “backward pass” through the neural network. What we have described 
+		here is in the context of the forward pass. The backward pass is described in a 
+		<a href="#How_are_Neural_Networks_Trained">section</a> below. The word “neuron” is inspired by the fact that the function 
+		applied by the neuron, including adding the values flowing into it from the weights, is somewhat similar to the action of 
+		a real biological neuron. Hence, as discussed earlier, the term "neural networks". In the context of the artificial neural 
+		networks that we are talking about here, the neurons are also called “nodes”.</p>
+		  
+		<h2>Layers</h2>
+		<p>The inputs, outputs, neurons, and weights are organized into layers. There is a layer of inputs feeding into the next
+		layer of neurons via the first layer of weights. This layer of neurons feeds into the next layer of neurons through
+		the next layer of weights. And so on until you reach the output layer. Layers of neurons that are present between the
+		input layer and the output layer are called hidden layers, because they are not visible to the outside world. We also
+		have to mention that the layer of inputs is a layer of raw values that flow into the first hidden layer via the connecting
+	  weights. The layer of outputs, on the other hand, is a layer of neurons, each of which transforms the values flowing into
+		it to yield a value flowing out of it, which is an output value. All of this is illustrated in the Interaction below.</p>
+
+		<h2>The Interaction in Brief</h2>
+		<p>The ideas presented on this page are explained in the Interaction below. To interact with it, just hover on the weights 
+		or neurons with your mouse or click the "Re-randomize" button. The circles are neurons and the connecting lines are weights. 
+		The number inside each neuron is the value flowing out of that neuron. The number on each weight is the value of that weight. 
+		The "Re-randomize" button randomizes the weights and the input layer values. All the neuron values are then computed from 
+		these values. In practice, the input layer values are never random; they belong to a set of fixed input-output pairs 
+		which serve as examples for training. We randomize them in this Interaction purely to show how the outputs are computed 
+		from the inputs.</p>
+	</div>
+  </div>
+</div>  
+		<div style="text-align: center;">
+			<h4 id= "Interaction_Basics">Interaction: Basics</h4>
+		  <div id="controls">
+		  	<input id='randomizeButton' type='button' value='Re-randomize'/>
+		  </div>
+			<canvas id='canvas' width = '1170' height='500'>
+		      Your web browser does not support the Canvas element that is needed to display this Interaction. Please upgrade to a
+		      newer browser. 
+		  </canvas>
+		  <script type='module' src='./js/basic_nn/Basic_NN_Runner.js'></script>
+		</div>
+	<div class="flex-container">
+		<div class="flex-left">
+		</div>
+		<div class="flex-right">
+		 <div class="sub_block">
+			<h2 id="How_are_Neural_Networks_Trained">How are Neural Networks Trained?</h2>
+			<p>We are finally in a position to understand how neural networks are trained. Multiple examples consisting of sets of 
+			inputs and the corresponding desired outputs are presented to a neural network. The inputs feed forward through the 
+			neural network getting multiplied by the weights and transformed by the neurons to yield the "actual outputs", in 
+			contrast to the "desired outputs" presented as part of the example. The actual outputs are compared to the desired 
+			outputs using a procedure from calculus. In doing so, updates are first computed for the right most layer (the one 
+			closest to the outputs) of weights. The updates are just decimal numbers which get added (or subtracted) to the 
+			weights. As we mentioned earlier, the weights are also just decimal numbers. Updates are then computed using calculus 
+			to the next layer of weights to the left and these updates are then applied as before to this set of weights. This is 
+			done until all the layers of weights are covered. The inputs are then run through these modified weights and the resulting 
+			outputs are once again compared with the desired outputs. This process of updating weights is continued until the actual 
+			outputs are "close enough" to the desired outputs. The absolute difference between the actual and desired outputs which 
+			constitutes "close enough" can be specified by the designer of the neural network. Training a neural network, then, is 
+			a process of progressively and iteratively updating the weights of a neural network until the actual outputs for each 
+			given set of inputs is close enough to the desired outputs.</p>
+
+			<p>Once our neural network has been trained, we are in a position to run it on examples that the network has not 
+			seen before, feeding in a set of inputs to generate a set of outputs, which are the predictions for those inputs.</p>
+			<br><br>
+			<hr>
+			<p>
+	     Copyright © 2022 by Sandeep Jain. All rights reserved.</p>
+	    </div>
+	   </div>
+	  </div>
+  </body>
+</html>

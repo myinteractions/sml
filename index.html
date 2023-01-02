@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="The purpose of this website is to explain Machine Learning and Neural Networks in a simpler way to 
+    people who are new to the subject.">
+    <meta name="author" content="Sandeep Jain">
+		<meta name="copyright" content="Copyright 2022 by Sandeep Jain">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="expires" content="4500">
+
+    <title>Simpler Machine Learning</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+  	<br>
+  	<h1>Simpler Machine Learning</h1>
+      	<br>
+  <div class="flex-container">   
+    <div class="flex-left">
+          <p>Simpler Machine Learning</p>
+          <p><a href="math.html">Some Mathematics</a></p>
+          <p><a href="intro.html">Introducing Neural Networks</a></p>
+          <p><a href="xor.html">XOR: A Simple Neural Network in Detail</a></p>
+          <p><a href="rnn.html">Recurrent Neural Networks</a></p>
+          <p><a href="interactions/index.html">Interactions: The Future of Scientific Communication</a></p>
+          <p><a href="http://www.sandeepjain.net">About me</a></p>
+    </div>
+    <div class="flex-right">
+      <div class="sub_block">
+
+    <p>Machine learning is a complex topic. This website attempts to present it to you in a simpler way. The “machine” in 
+    machine learning refers to an ordinary digital computer. The “learning” means that the computer runs programs that can 
+  	learn to recognize patterns purely from sets of data. Recognizing patterns can mean learning how to classify the data 
+  	into different types, such as whether the data for a given person translates into having a given disease or not. It can 
+  	also mean learning how to predict a continuous variable as the output of the machine learning program, such as a salary, 
+  	from the given data set. Machine learning is a subset of a broader branch of computer science called Artificial Intelligence. 
+  	These days, it is sometimes used to denote the same thing as Artificial Intelligence.</p>
+
+  	<p>Machine learning comes in numerous different varieties. These varieties are called machine learning models. The 
+  	models can be classified in different ways. A common classification is as follows:</p>
+
+		<h3>Supervised Learning</h3>
+    <p>Supervised learning models are “trained” on known datasets. A known or example dataset consists of a set of vectors or 
+    arrays of example numbers with corresponding numerical labels. We refer to a vector or array of example numbers as a data 
+  	point. Such an example dataset is presented repeatedly to the machine learning training algorithm until the labels predicted 
+  	by the algorithm are close enough to the labels in the example dataset. The trained model is then “run” on an unknown dataset. 
+  	An unknown dataset consists of a set of data points of identical dimension to the data points in the example dataset, but 
+  	with no given labels. The labels for each data point are predicted by the machine learning model.</p>
+
+		<h3>Unsupervised Learning</h3>
+		<p>The datasets for unsupervised learning models consist of data points that do not have corresponding labels. The model 
+		groups the data points together using some intrinsic criterion, such as the distance in n-dimensional space between the data 
+		points. A new data point that the model has not seen before  is then analysed using the same criterion, such as using the 
+		distance with the pre-existing data points, to associate it with the appropriate group.</p>
+
+		<h3>Semi-supervised Learning</h3>
+		<p>Semi-supervised learning models combine a small quantity of labeled data points with a large quantity of unlabeled data 
+		points. Labeling a set of data points can be an expensive process. Thus, semi-supervised learning models are useful in 
+		applications where it is difficult to collect labeled data points.</p>
+
+		<p>From the viewpoint of utility, I prefer classifying the models simply as “neural networks” and “miscellaneous models”. 
+		These can then be interpreted using the classification framework given above as needed. This is because neural networks 
+		are the most useful kinds of machine learning models.</p>
+
+		<h2>Neural Networks</h2>
+		<p>There are many types of neural networks. The most relevant of them for our purposes are given below. All of these are 
+		supervised learning models.</p>
+		  
+		<h3>Multi-layer Perceptrons</h3>
+		<p>A multi-layer perceptron is a network of “neurons” and “weights”. The neurons and weights are organized into layers. 
+		There is an input layer, an output layer, and one or more hidden layers between the input layer and the output layer. 
+		The perceptron is first trained on labeled data points and then run on unlabeled data points. Values flow from the input 
+		layer to the output layer. In the process, they are multiplied by the weights and transformed by the neurons. While training, 
+		the values at the output layer flow back through the neural network in a process of updating the weights. While running, the 
+		values simply flow forward. The multi-layer perceptron is in some way the basis for all other kinds of neural networks. It 
+		is described in detail in the <a href="intro.html">Introducing Neural Networks</a> section of this website.</p>
+
+		<h3>Recurrent Neural Networks</h3>
+		<p>Recurrent neural networks are multi-layer perceptrons with a twist. The twist is that in addition to values feeding 
+		forward from the input layer to the output layer, the values coming out of each hidden layer go back into that hidden layer. 
+		For simplicity, consider a recurrent neural network with one hidden layer. As each new set of values arrives at the input layer,
+		the values that were previously fed from the input layer to the hidden layer now feed from the hidden layer back into itself. 
+		This gives the recurrent neural network a trace across time. It is effectively a memory. Recurrent neural networks are useful in 
+		applications where the data is sequenced across time. Examples are speech recognition and the translation of text from one 
+		language to another. Recurrent neural networks are described in detail in the <a href="rnn.html">Recurrent Neural Networks</a> 
+		section of this website.</p>
+
+		<h3>Convolutional Neural Networks</h3>
+		<p>Convolutional neural networks are typically used in applications where the inputs are square or rectangular arrays, such as 
+		images. The array is actually an array of simple numbers: any image can be represented as an array of numbers. The output of the 
+		convolutional neural network may be a classification of the image into different types, such as dogs, cats, and mice. This is a 
+		powerful possibility, and can be used in advanced applications such as self driving cars.</p>
+
+	  <h3>Deep Learning</h3>
+		<p>You may have heard of the term “deep learning” in the context of machine learning. A deep learning model is simply a neural 
+		network which has more than one hidden layer. This applies to multi-layer perceptrons, recurrent neural networks, convolutional 
+		neural networks, and other types of neural networks. Also, a deep learning model may combine layers corresponding to different 
+		neural network models. A convolutional neural network deep learning model usually contains some simple perceptron layers (these 
+		are also called fully connected layers). In practice, deep learning models may contain along the lines of 10 to 20 layers.</p>
+
+		<h2>Miscellaneous Models</h2>
+		<p>As mentioned earlier, there are a large number of machine learning models. Some of the more useful models are: K Nearest 
+		Neighbors, Support Vector Machines, K Means Clustering, Principal Component Analysis, and Decision Trees and Random Forests.</p>
+
+		<p>This website is a work in progress. As I complete detailed write-ups of more sections, I will keep adding them to the website.</p>
+
+		<h2>The Power of Machine Learning</h2>
+		<p>The power of machine learning comes from the fact that there can be thousands (or millions, or even billions now) of examples 
+		that constitute an extremely detailed pattern to be learned by the machine learning model. The model then generalizes from the 
+		available examples of the pattern to the underlying mapping between the inputs and outputs. In this way, machine learning models 
+		are now able to effectively transcribe speech to text, recognize faces and other images, diagnose diseases from raw patient 
+		data, and perform a host of other tasks. The processing done by sophisticated machine learning models takes a lot of 
+		computational power. Computational power has been approximately doubling every two years for the last several decades, 
+		and the power needed for these sophisticated models has just recently become available. This, along with recent theoretical 
+		advances in machine learning has turned the present period into a golden age of machine learning.</p>
+
+			<br><br>
+			<hr>
+			<p>This website is dedicated to Mark Lawrence, who taught me how to program.<br>
+	     Copyright © 2022 by Sandeep Jain. All rights reserved.</p>
+	   </div>
+  </div>
+</div>
+</body>
+</html>

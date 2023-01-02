@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="This web page explains the XOR Neural Network, a very simple Neural Network, in detail.">
+    <meta name="author" content="Sandeep Jain">
+		<meta name="copyright" content="Copyright 2022 by Sandeep Jain">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="expires" content="4500">
+		
+    <title>Simpler Machine Learning - XOR</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+	  	<br>
+	  	<h1>XOR: A Simple Neural Network in Detail</h1>
+	      	<br>
+	  <div class="flex-container">
+    	<div class="flex-left">
+      	<p><a href="index.html">Simpler Machine Learning</a></p>
+      	<p><a href="math.html">Some Mathematics</a></p>
+      	<p><a href="intro.html">Introducing Neural Networks</a></p>
+      	<p>XOR: A Simple Neural Network in Detail</p>
+      	<p><a href="rnn.html">Recurrent Neural Networks</a></p>
+      	<p><a href="interactions/index.html">Interactions: The Future of Scientific Communication</a></p>
+      	<p><a href="http://www.sandeepjain.net">About me</a></p>
+    	</div>
+	    <div class="flex-right">
+	      <div class="sub_block">
+					<h2 class="top_para">Truth Tables</h2>
+			    <p>We start our exploration of the XOR neural network with an introduction to truth tables. Truth tables
+			    are just a way of combining true and false values to yield other true and false values. For example, the
+			    OR truth table is given below.</p>
+			    <table class="center_table">
+					  <tr>
+					    <th>A</th>
+					    <th>B</th>
+					    <th>A OR B</th>
+					  </tr>
+					  <tr>
+					    <td>false</td>
+					    <td>false</td>
+					    <td>false</td>
+					  </tr>
+					  <tr>
+					    <td>false</td>
+					    <td>true</td>
+					    <td>true</td>
+					  </tr>
+					  <tr>
+					    <td>true</td>
+					    <td>false</td>
+					    <td>true</td>
+					  </tr>
+					  <tr>
+					    <td>true</td>
+					    <td>true</td>
+					    <td>true</td>
+					  </tr>
+					</table>
+					<p>To get an intuition for this truth table, if we denote true by "something", and false by "nothing", then nothing OR nothing is 
+						nothing; nothing OR something is something; something OR nothing is something; and something OR something is something.
+						The difference between the OR truth table and the XOR truth table is that XOR is "eXclusively OR". That means that exactly
+						one of A and B can be true or false exclusive of the other. Hence both false XOR false and true XOR true are false. We can also
+						denote the false value by 0 and the true value by 1, and as we will soon see, this is extremely important in the context of 
+						neural networks. The XOR truth table is given below.</p>
+			    <table class="center_table">
+					  <tr>
+					    <th>A</th>
+					    <th>B</th>
+					    <th>A XOR B</th>
+					  </tr>
+					  <tr>
+					    <td>0</td>
+					    <td>0</td>
+					    <td>0</td>
+					  </tr>
+					  <tr>
+					    <td>0</td>
+					    <td>1</td>
+					    <td>1</td>
+					  </tr>
+					  <tr>
+					    <td>1</td>
+					    <td>0</td>
+					    <td>1</td>
+					  </tr>
+					  <tr>
+					    <td>1</td>
+					    <td>1</td>
+					    <td>0</td>
+					  </tr>
+					</table>
+					<p>The relevance of the numerical values of A and B as o's and 1's is that we can use A and B as the input values to a 
+						neural network and A XOR B as the output value. The XOR truth table above, then, is the pattern consisting of 4 examples
+						as the 4 rows of the truth table, that our XOR neural network has to learn. In all the myriad applications of neural
+						networks - whether image recognition or speech to text or anything else, the input and output values get encoded as
+						numbers. In the following sections, we will see how the XOR neural network works in detail.</p>
+
+					<h2>The Error Function</h2>
+
+					<p>Our goal in machine learning is to set up a process to bring the actual outputs as close as possible to the desired outputs, for 
+					any given set of inputs. That is, we want to reduce the absolute distance between the actual and desired outputs as much as possible, 
+					for all of the inputs. To enable this, we introduce the concept of an “Error Function”. The error function is simply the difference 
+					between the actual and desired outputs, squared, and summed across all input-output pairs or examples. (If you are still unfamiliar 
+					with the concept of functions, read the section on <a href=math.html#Functions>Functions</a>). Since our simple XOR neural network has 
+					only one output, we don’t need to sum across all the output neurons; otherwise we would have. We express the error function mathematically 
+					as follows:</p>
+
+					<p>E(w) = &frac12; &times; &Sigma; <sub>examples</sub> [D<sub>ex</sub> - A<sub>ex</sub>(w)]<sup>2</sup></p>
+
+					<p>In the expression above, &Sigma; stands for summation over the examples. D<sub>ex</sub> is the desired output and A<sub>ex</sub>(w) 
+					is the actual output for each example. The subscript <sub>ex</sub> after the D and A simply means that the desired output D and the actual
+					output A is the value for each example - and we are summing across the examples. We have put a w in the brackets because as you change 
+					the weights values the actual output value changes (remember the values from each previous layer are multiplied by the weights and transformed 
+					by the neurons at each next layer). The transformation by the neurons is fixed, but the weights are variable values. That is what makes the 
+					actual output a function of the weights. Since the error E is a function of (is dependent on) the actual output A<sub>ex</sub> for each 
+					example, and the actual output A<sub>ex</sub> is a function of (is dependent on) the weights w, it follows that the error E is a function 
+					of (is dependent on) the weights. The desired output D<sub>ex</sub> is a fixed value for each example. We square the difference 
+					between D<sub>ex</sub> and A<sub>ex</sub>(w) above to define the error because, after all, our goal is to minimize the absolute difference 
+					between D<sub>x</sub> and A<sub>ex</sub>(w). If D<sub>ex</sub> – A<sub>ex</sub>(w) is a large negative or a large positive number, that is a 
+					bad thing, whereas if D<sub>ex</sub> – A<sub>ex</sub>(w) is a small negative or a small positive number, that is a good thing – and squaring 
+					D<sub>ex</sub> – A<sub>ex</sub>(w) to define the error ensures this. We multiply the whole summation by half only to simplify the detailed nuts 
+					and bolts of the calculation – it has no other purpose.</p>
+
+					<p>A couple of disclaimers: other error functions than the one defined above are possible and used in neural networks, but the above one is 
+					by far the simplest and most intuitive, so that is what we will use, at least for our simple XOR neural network. Secondly, we can have 
+					an additional value flowing into each neuron of a layer which is called the bias and adjust that bias as part of the training. But this 
+					bias is not essential in the construction of a neural network and we will ignore it for now.</p>
+
+					<p>In the following Interaction, you can play with changing the weights to see if you can manually change the weights so as to minimize 
+					the error and bring the actual XOR output as close as possible to the desired output for each of the input examples. To change a weight, 
+					just hover over the weight with your mouse, and a bubble will pop up which allows you to change that weight value (when the bubble pops
+					up, edit the weight directly in the bubble without moving the mouse and then press the Enter key). Remember, the goal of training a neural 
+					network is to adjust the weights gradually so as to bring the actual output as close as needed to the desired output, or to minimize the 
+					error function, and this exercise will give you some appreciation as to how difficult it is to do this in an ad hoc or random way.</p>
+				</div>
+			 </div>
+			</div>
+					<div style="text-align: center;">
+						<h4 id= "Interaction_Weights">Interaction: Playing with the Weights</h4>
+						<div id="controls_a">
+							<input id='nextInputButton_a' class='anyButton' type='button' value='Next Input'/>&nbsp;&nbsp;&nbsp;
+							<input id='randomizeButton_a' class='anyButton' type='button' value='Re-randomize'/>
+						</div>
+						<canvas id='canvas_a' class = 'canvas_class' width = '1000' height='500'>
+					      Your web browser does not support the Canvas element that is needed to display this Interaction. Please upgrade to a
+					      newer browser. 
+					  </canvas>
+				  </div>
+		<div class="flex-container">	  
+			<div class="flex-left">
+			</div>
+			<div class="flex-right">
+				<div class="sub_block">
+					<h2>Training a Neural Network</h2>
+
+					<p>You have seen in the above Interaction how difficult it can be to minimize the error in an ad hoc or random way. It turns out that there 
+					is a systematic way to minimize the error function. This systematic way of minimizing the error function is what lies at the heart of
+					machine learning and this is what is called "training" a neural network. You can play with training a neural network in the following
+					Interaction. The default error value of a randomized neural network should typically be more than 0.5. After you have trained the neural
+					network (by pressing the "Run Training" button), the error value should typically fall below 0.08. If the error value does not fall
+					to a satisfactory number, and the actual outputs are still too far away from the desired outputs, try Re-randomizing the neural
+					network and training again. Note that the actual output will most likely never be exactly 0 or 1, but "close", like below 0.2 or
+				  above 0.8 respectively for desired outputs of 0 or 1.</p>
+				</div>
+			</div>
+		</div>
+			<div style="text-align: center;">
+				<h4 id="Interaction_Training">Interaction: Playing with Training</h4>
+				<div id="controls_b">
+					<input id='runTrainingButton_b' class='anyButton' type='button' value='Run Training'/>&nbsp;&nbsp;&nbsp;
+					<input id='nextInputButton_b' class='anyButton' type='button' value='Next Input'/>&nbsp;&nbsp;&nbsp;
+					<input id='randomizeButton_b' class='anyButton' type='button' value='Re-randomize'/>
+				</div>
+				<canvas id='canvas_b' class = 'canvas_class' width = '1000' height='550'>
+					Your web browser does not support the Canvas element that is needed to display this Interaction. Please upgrade to a
+					newer browser. 
+				</canvas>
+			</div>
+		<div class="flex-container">	  
+			<div class="flex-left">
+			</div>
+			<div class="flex-right">
+				<div class="sub_block">
+					<h2 id="Training_Algorithm">The Training Algorithm</h2>
+
+					<p>We will now go over the training algorithm which is used to train the above neural network, in detail. An algorithm is just a
+					sequence of steps for carrying out a given task (and a computer is a machine that can carry out any algorithm that you can specify
+					in writing).</p>
+
+					<p>The key to understanding the neural network training algorithm is to understand something called the “delta” value. There is a 
+					separate delta value associated with every neuron in the neural network, except for the input layer neurons, which do not have any 
+					delta value associated with them. The delta value for the output layer neuron or neurons is computed using a different calculation 
+					than the delta value for the hidden layer neurons. The delta value is first computed for the output layer, and then propagated backwards 
+					through the hidden layers of the neural network, to the first hidden layer. This is why the training algorithm is called “back-propagation”. 
+					As you have seen above, it takes thousands of iterations to train a neural network. The delta values are computed afresh for each 
+					iteration.</p> 
+
+					<p>Recall that the purpose of training a neural network is to update the weights over many iterations, until the actual outputs of the 
+					neural network are as close as needed to the desired outputs. Once you have calculated the delta values, it is a simple additional step 
+					to use them to calculate the weight updates, for each iteration.</p>
+
+					<p>Using the shorthand notation introduced above, where A denotes the actual output from an output neuron (in the output layer) of the 
+					neural network and D denotes the desired output, the delta value for that output neuron is calculated as:</p>
+
+					<p>delta = A &times; (1 – A) &times; (D – A)</p>
+
+					<p>Note that this is for a given training example – we have avoided using the subscripts <sub>ex</sub> with the A and D variables to make 
+					the equation less imposing.</p>
+
+					<p>The next equation tells you how to calculate the delta for a neuron of a previous layer of a neural  network, given all the deltas for 
+					the corresponding next layer of the neural network. We also need to use the current output value of that hidden layer neuron, which we 
+					represent by the letter O. As a matter of fact, we will use the variables delta<sub>j</sub> and O<sub>j</sub> to mean that this is the 
+					j<sup>th</sup> neuron of the previous layer, from the top. The equation is this:</p>
+
+					<p>delta<sub>j</sub> = O<sub>j</sub> &times; (1 – O<sub>j</sub>) &times; &Sigma;<sub>i</sub> (w<sub>ij</sub> &times; delta<sub>i</sub>)</p>
+
+					<p>We’ll work through the above equation. &Sigma; is the familiar summation operator introduced in the context of the error function above. 
+					The delta<sub>i</sub> values are the delta values for each neuron of the next layer. And each w<sub>ij</sub> value represents the weight 
+					value leading from the j<sup>th</sup> neuron of a previous layer to the i<sup>th</sup> neuron of its next layer. For a given neuron of a 
+					previous layer, we sum across the product of the weights leading to the neurons of its next layer, and the delta values for those neurons. 
+					We multiply this summation by O<sub>j</sub> &times; (1 – O<sub>j</sub>), where O<sub>j</sub> is the output value of the neuron for which 
+					we are calculating the delta.</p>
+
+					<p>Now that we know how to calculate the delta for each neuron, it is a simple matter to update the weights of the neural network. Given 
+					a weight w<sub>ij</sub> connecting the j<sup>th</sup> neuron of its previous layer to the i<sup>th</sup> neuron of its next layer, the 
+					weight update, which we represent as update<sub>ij</sub> is:</p>
+
+					<p>update<sub>ij</sub> = r &times; O<sub>j</sub> &times; delta<sub>i</sub></p>
+
+					<p>That is, the update to the weight is a quantity r times the output of the previous neuron to that weight times the delta of the next 
+					neuron to that weight. The quantity r is called the Learning Rate. If you increase r, the update jump will be more, and if you decrease 
+					it, the update jump will be less. We use a default value of 0.15 for the sample neural network on this page.</p>
+
+					<p>The new weight is the old weight plus the update<sub>ij</sub> value of the given weight. That is,</p>
+
+					<p>w<sub>ij</sub><sup>new</sup> = w<sub>ij</sub><sup>old</sup> + update<sub>ij</sub></p>
+
+					<p>That’s the neural network training algorithm. Note that this algorithm is for the specific case where the neuron’s transformation function 
+					is the sigmoid function, 1/(1 + e<sup>-x</sup>), and the error function is the function given above in the Error Function section above. If 
+					either or both of these are different, the calculations given above will be different. But the general structure of the training algorithm 
+					will remain the same.</p> 
+
+					<p>You can play with all this in the below Interaction. If you hover over a neuron, it will show the delta calculation for that neuron.
+					If you hover over a weight, it will show the weight update calculation for that weight. We have used two hidden layers for this neural 
+					network, which is not necessary for the XOR example, but will give you a clearer idea about how the deltas are propagated backwards 
+					through the neural network. You can select the learning rate and the number of iterations per training run from the corresponding
+				  drop-downs. If you want to step through the iterations one at a time, select "1" from the iterations drop down and then keep pressing
+				  the "Run Training" button. Note that each iteration will select a random set of inputs from the available values because that is how
+				  the algorithm is set up. Every time the learning rate is changed, we run the neural network through a couple of secret iterations to 
+				  make the back-propagated deltas and weight update displays consistent with the new learning rate.</p>
+				</div>
+			</div>
+		</div>
+		<div style="text-align: center;">
+			<h4 id="Interaction_Backpropagation">Interaction: Backpropagation in Detail</h4>
+			<div id='itemSelect_c'>
+				<span class='canvasTextStyling'>Learning Rate (r): </span>
+				<select id='learningRateSelect'>
+                  <option value='0.01'>0.01</option>
+                  <option value='0.05'>0.05</option>
+                  <option value='0.1'>0.1</option>
+                  <option value='0.15' selected>0.15</option>
+                  <option value='0.2'>0.2</option>
+                  <option value='0.5'>0.5</option>
+                  <option value='1.0'>1.0</option>
+                  <option value='2.0'>2.0</option>
+                  <option value='5.0'>5.0</option>
+               </select>
+             &nbsp;&nbsp;&nbsp;
+		         <span class='canvasTextStyling'>Iterations per Run: </span>
+		         <select id='iterationsSelect'>
+                  <option value='1'>1</option>
+                  <option value='10'>10</option>
+                  <option value='100'>100</option>
+                  <option value='1000'>1000</option>
+                  <option value='10000'>10000</option>
+                  <option value='20000'>20000</option>
+                  <option value='50000' selected>50000</option>
+                  <option value='100000'>100000</option>
+               </select>
+             &nbsp;&nbsp;&nbsp;
+				<input id='defaultsButton_c' class='smallButton' type='button' value='Defaults'/>
+			</div>
+			<div id="controls_c">
+				<input id='runTrainingButton_c' class='anyButton' type='button' value='Run Training'/>&nbsp;&nbsp;&nbsp;
+				<input id='randomizeButton_c' class='anyButton' type='button' value='Re-randomize'/>
+			</div>
+			<canvas id='canvas_c' class = 'canvas_class' width = '1200' height='550'>
+				Your web browser does not support the Canvas element that is needed to display this Interaction. Please upgrade to a
+				newer browser. 
+			</canvas>
+			<script type='module' src='./js/nn/NN_Runner.js'></script>
+			</div>
+				
+		<div class="flex-container">	  
+			<div class="flex-left">
+			</div>
+			<div class="flex-right">  
+				<div class="sub_block">
+					<p>So that's it for the XOR neural network. We mentioned earlier on this website that neural networks are structures that learn
+					how to generalize from examples, whereas you are not seeing any generalization in the XOR neural network presented on this page.
+				  That is because the XOR neural network is a toy neural network that does not serve any useful purpose other than to teach you
+				  how a neural network gets trained to recognize its examples.</p>
+				  <br><br>
+				  <hr>
+					<p>Copyright © 2022 by Sandeep Jain. All rights reserved.</p>
+	  			</div>
+	  		</div>
+	  	</div>
+  </body>
+</html>
