@@ -1,6 +1,27 @@
+/*************************************************************
+ *
+ *  Copyright (c) 2022 Sandeep Jain
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
 
 /**
- * Copyright 2022 by Sandeep Jain. All Rights Reserved.
+ * @fileoverview  Contains the Weight, Neuron, NeuronLayer, NeuralNetwork, and NeuralNetworkTrainer
+ * 				  classes. All these classes together are for training and running a neural network.
+ * 				  A limitation of the neural network as implemented in this program is that it can
+ * 				  have only 2 input neurons and 1 output neuron.
+ *
+ * @author Sandeep Jain
  */
 
 import {EncapsulatedNumber} from '../utilities/Calculator.js';
@@ -12,51 +33,96 @@ import {WeightTextHandler, NeuronTextHandler, NeuralNetworkTextHandler} from './
 import {TrainingData} from './TrainingData.js';
 import {Coordinates} from '../utilities/Geometry.js';
 
-// Class Weight
-
+/*****************************************************************/
+/**
+ * The Weight class implements a weight that has a value which is wrapped
+ * in a wrapper object, and which can be modified by the user when the user's
+ * mouse hovers over the weight.
+ */
 export class Weight extends BasicWeight {
+
+	/**
+	 * When the weight value is updated, the previousValue contains the value of the weight
+	 * before updation.
+	 */
 	protected previousValue: number;
+
+	/**
+	 * This objects handles the display of the text related to the weight
+	 */
 	protected textHandler: WeightTextHandler;
+
+	/**
+	 * A wrapper object that contains the weight value
+	 */
 	private encapsulatedWeightValue: EncapsulatedNumber;
 
+	/**
+	 * @param {CanvasRenderingContext2D} context Responsible for all 2 dimensional drawing operations     
+	 * @constructor
+	 */
 	constructor(context: CanvasRenderingContext2D) {
 		super(context);
 		this.textHandler = new WeightTextHandler(context);
 
-		// Modified for General Neural Network
 		this.encapsulatedWeightValue;
 		this.previousValue;
 	}
 
+	/**
+	 * Initializes the weight to a random number between the low and the high value
+	 */
 	public initializeWeight(): void {
 		let rawValue = this.calculator.randomNumberBetween(-2.0, 2.0);
 		this.encapsulatedWeightValue = new EncapsulatedNumber(rawValue, 3);
 	}
 
+	/**
+	 * @returns Returns the value of the weight, as a simple number
+	 */
 	public getValue(): number {
 		return this.encapsulatedWeightValue.getValue();
 	}
 
-	// Modified for General Neural Network
+	/**
+	 * Makes a rounded rectangle pop up, within which to allow the user to edit the value of the weight
+	 * 
+	 * @param {number} pointX The x coordinate of the pop up
+	 * @param {number} pointY The x coordinate of the pop up
+	 */
 	public showWeightPopup(pointX: number, pointY: number): void {
 		this.textHandler.drawWeightPopupForAcceptingNewWeight(pointX, pointY, this.encapsulatedWeightValue);
 	}
 
-	// General Neural Network Functions
+	/**
+	 * If the mouse is hovering over the weight, and the user enters a character, this method
+	 * asks the weight text handler to handle the entry of the character.
+	 * 
+	 * @param {KeyboardEvent} eventObject The object representing the entry of the character
+	 */
 	public propagateKeypressEventToHighlightedWeight(eventObject: KeyboardEvent): void {
 		if(this.mouseIsHoveringOnWeight == true) {
 			this.textHandler.handleKeypressEvent(eventObject);
 		}
 	}
 
+	/**
+	 * If the mouse is hovering over the weight, and the user presses a key, this method
+	 * asks the weight text handler to handle the press of the key.
+	 * 
+	 * @param {KeyboardEvent} eventObject The object representing the entry of the character
+	 */	
 	public propagateKeydownEventToHighlightedWeight(eventObject: KeyboardEvent): void {
 		if(this.mouseIsHoveringOnWeight == true) {
 			this.textHandler.handleKeydownEvent(eventObject);
 		}
 	}
 
-	// For General Neural Network Training
-
+	/**
+	 * @param {number} nextNeuronDelta 
+	 * @param {number} previousNeuronOutput 
+	 * @param {number} learningRate 
+	 */
 	public updateWeight( nextNeuronDelta: number, previousNeuronOutput: number, learningRate: number ): void {
 		this.previousValue = this.getValue();
 		let updatedValue = this.previousValue + ( learningRate * nextNeuronDelta * previousNeuronOutput );
